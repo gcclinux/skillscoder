@@ -1,0 +1,34 @@
+<style>
+    .center {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    textarea {
+        width: 80%; 
+        height: 200px;
+    }
+</style>
+
+<form id="myForm">
+    <p>Enter your code snip here:</p>
+    <textarea id="myTextarea"></textarea>
+    <BR>
+    <button type="submit">Submit</button>
+</form>
+
+<p>Result</p>
+<textarea id="resultTextarea" readonly></textarea>
+
+<script>
+    document.getElementById('myForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // prevent the form from being submitted normally
+        var content = document.getElementById('myTextarea').value;
+        console.log("This is the content of the textarea:", content);
+        // Here you would add the code to save the content to a file.
+        // This depends on your server-side setup and is not possible with client-side JavaScript alone.
+        document.getElementById('resultTextarea').value = content; // display the content in the result textarea
+    });
+</script>
