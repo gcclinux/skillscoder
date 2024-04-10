@@ -31,6 +31,7 @@ func main() {
 
 	r.Static("/js", "js")     // serve the js folder
 	r.Static("/code", "code") // serve the js folder
+	r.Static("/css", "css")   // serve the js folder
 
 	r.POST("/code/test.go", func(c *gin.Context) {
 		var json struct {

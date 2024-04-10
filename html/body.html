@@ -1,28 +1,15 @@
-<style>
-    .center {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-    textarea {
-        width: 80%; 
-        height: 200px;
-    }
-</style>
-
 <form id="myForm">
-    <p>Enter your code snippet here:</p>
+    <p class="bordered">Enter your code snippet here:</p><BR>
     <textarea id="myTextarea"></textarea>
     <br>
     <button type="submit">Submit</button>
 </form>
 
-<p>Alternative greener code</p>
+<p class="bordered">Alternative Code</p><BR>
 <textarea id="resultTextarea" readonly></textarea>
 
-<p>Result</p>
+<BR><p class="bordered">Output Result</p><BR>
 <textarea id="output" readonly></textarea>
 
 <script src="js/code.js"></script>
+<script src="js/contentCheck.js"></script>

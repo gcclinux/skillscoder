@@ -5,33 +5,8 @@ document.getElementById('myForm').addEventListener('submit', function(e) {
     var content = document.getElementById('myTextarea').value;
     console.log("This is the content of the textarea:", content);
     
-    // Check if content equals to the specified string
-    var type1 = `package main
-import "fmt"
-
-func main() {
-    hello := "hello world"
-    fmt.Println(hello)
-}`;
-
-    var type2 = `package main
-import "fmt"
-
-func main() {
-    var hello string = "hello world"
-    fmt.Println(hello)
-}`;
-
-    var newContent = `package main
-import "fmt"
-
-func main() {
-    fmt.Println("hello world")
-}`;
-
-    if (content.trim() === type1 || content.trim() === type2) {
-        content = newContent;
-    }
+    // Check and replace the content if necessary
+    content = checkContent(content);
 
     // Send the content to a server-side script to save it to a file
     fetch('/code/test.go', {
