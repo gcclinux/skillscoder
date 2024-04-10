@@ -1,9 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"log"
 	"os"
+	"os/exec"
 
 	"github.com/gin-gonic/gin"
 )
@@ -39,14 +41,26 @@ func main() {
 			path := "./code/test.go"
 			err := os.WriteFile(path, []byte(json.Content), 0644)
 			if err != nil {
+				log.Printf("Error writing file: %v", err)
 				c.JSON(500, gin.H{"status": "unable to save file"})
 				return
 			}
-			c.JSON(200, gin.H{"status": "file saved"})
+			// Run the command after the file is saved
+			cmd := exec.Command("go", "run", path)
+			output, err := cmd.CombinedOutput()
+			if err != nil {
+				log.Printf("Error running command: %v", err)
+				c.JSON(500, gin.H{"status": "unable to run command", "error": err.Error()})
+				return
+			}
+
+			outputStr := string(output) // convert output to string
+			c.JSON(200, gin.H{"status": "file saved and command run", "output": outputStr})
 		} else {
 			c.JSON(400, gin.H{"status": "unable to bind JSON"})
 		}
 	})
-
-	r.Run("localhost:2000") // listen and serve on localhost:2000
+	address := "localhost:2000"
+	fmt.Printf("\nServer is running at http://%s\n\n", address)
+	r.Run(address) // listen and serve on localhost:2000
 }
