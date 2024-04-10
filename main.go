@@ -61,7 +61,7 @@ func main() {
 			c.JSON(400, gin.H{"status": "unable to bind JSON"})
 		}
 	})
-	address := "localhost:2000"
+	address := "0.0.0.0:8000"
 	fmt.Printf("\nServer is running at http://%s\n\n", address)
-	r.Run(address) // listen and serve on localhost:2000
+	r.Run(address)
 }
