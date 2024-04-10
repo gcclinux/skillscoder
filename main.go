@@ -24,7 +24,7 @@ func main() {
 		}
 
 		c.HTML(200, "index.html", gin.H{
-			"Title": "Welcome to OnlineDev!",
+			"Title": "Welcome to Skills Club Coder!",
 			"Body":  template.HTML(content), // convert the content to HTML
 		}) // render the HTML file with data
 	})
