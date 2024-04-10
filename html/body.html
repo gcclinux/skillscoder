@@ -13,25 +13,16 @@
 </style>
 
 <form id="myForm">
-    <p>Enter your code snip here:</p>
+    <p>Enter your code snippet here:</p>
     <textarea id="myTextarea"></textarea>
-    <BR>
+    <br>
     <button type="submit">Submit</button>
 </form>
 
-<p>Proposed greener code</p>
+<p>Alternative greener code</p>
 <textarea id="resultTextarea" readonly></textarea>
 
 <p>Result</p>
-<textarea id="resultTextarea" readonly></textarea>
+<textarea id="resultTextarea2" readonly></textarea>
 
-<script>
-    document.getElementById('myForm').addEventListener('submit', function(e) {
-        e.preventDefault(); // prevent the form from being submitted normally
-        var content = document.getElementById('myTextarea').value;
-        console.log("This is the content of the textarea:", content);
-        // Here you would add the code to save the content to a file.
-        // This depends on your server-side setup and is not possible with client-side JavaScript alone.
-        document.getElementById('resultTextarea').value = content; // display the content in the result textarea
-    });
-</script>
+<script src="js/code.js"></script>
