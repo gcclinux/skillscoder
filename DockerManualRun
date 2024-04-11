@@ -1,7 +1,0 @@
-sudo docker run \
---detach \
---interactive \
---restart=always \
---publish 8000:8000 \
---name SkillsCoder \
-gcclinux/skillscoder:latest
