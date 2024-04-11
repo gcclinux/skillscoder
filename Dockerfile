@@ -18,6 +18,8 @@ ADD code/ /app/code
 ADD css/ /app/css
 ADD html/ /app/html
 ADD js/ /app/js
+ADD img/ /app/img
+ADD routes/ /app/routes
 ADD main.go /app/main.go
 
 # Expose port 8000

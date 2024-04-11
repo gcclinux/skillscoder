@@ -14,6 +14,8 @@ services:
       - ./css:/app/css
       - ./html:/app/html
       - ./js:/app/js
+      - ./img:/app/img
+      - ./routes:/app/routes
       - ./main.go:/app/main.go
     working_dir: /app
     command: bash -c "go build -o skills *.go && ./skills"
