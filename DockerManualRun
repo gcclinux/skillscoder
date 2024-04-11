@@ -4,4 +4,4 @@ sudo docker run \
 --restart=always \
 --publish 8000:8000 \
 --name SkillsCoder \
-gcclinux/skillscoder:aarch64
+gcclinux/skillscoder:latest
