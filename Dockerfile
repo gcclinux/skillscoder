@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y net-tools
 WORKDIR /app
 
 # Set the app name and version
-LABEL app.name="SkillsClubCode" app.version="001"
+LABEL app.name="SkillsCoder" app.version="001"
 
 # Copy the local package files to the container's workspace.
 ADD README.md /app/README.md

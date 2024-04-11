@@ -17,7 +17,7 @@ func SetupRoutes(r *gin.Engine) {
 		}
 
 		c.HTML(200, "index.html", gin.H{
-			"Title": "Welcome to Skills Club Coder!",
+			"Title": "Welcome to SkillsCoder!",
 			"Body":  template.HTML(content), // convert the content to HTML
 		}) // render the HTML file with data
 	})
