@@ -2,6 +2,7 @@ version: '3'
 services:
   app:
     build: .
+    image: gcclinux/skillscoder:lastest
     restart: always
     container_name: SkillsCoder
     ports:
