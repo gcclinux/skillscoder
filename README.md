@@ -1,3 +1,3 @@
-# Skills Club Coder
+# Skills Coder
 
-Skills Club Coder is a web based application that allows developers to learn basic code developing, alternative code snip options without having an IDE installed
+SkillsCoder is an online code playground with realtime preview of alternative code improvements, Currently in concept stage, only supporting Golang but will be adding multi-user, multi-languages, multi-alternative code snipt!
