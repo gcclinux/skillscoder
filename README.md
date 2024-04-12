@@ -1,6 +1,6 @@
 # Skills Coder
 
-SkillsCoder is an online code playground with realtime preview of alternative code improvements, currently in concept stage, only supporting Golang but will be adding multi-user, multi-languages, multi-alternative code snipt!
+SkillsCoder is an online code playground with realtime preview of alternative code improvements, currently in concept stage, included Go and python as this stage but will be adding multi-user, more-languages, alternative code snipt!
 
 Concept Version:
 ```
