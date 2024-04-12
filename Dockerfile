@@ -3,12 +3,13 @@ FROM golang:latest
 
 # Install net-tools for netstat command
 RUN apt-get update && apt-get install -y net-tools
+RUN ln -s /usr/bin/python3 /usr/bin/python
 
 # Set the working directory in the container
 WORKDIR /app
 
 # Set the app name and version
-LABEL app.name="SkillsCoder" app.version="001"
+LABEL app.name="SkillsCoder" app.version="002"
 
 # Copy the local package files to the container's workspace.
 ADD README.md /app/README.md
