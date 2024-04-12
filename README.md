@@ -2,6 +2,12 @@
 
 SkillsCoder is an online code playground with realtime preview of alternative code improvements, currently in concept stage, only supporting Golang but will be adding multi-user, multi-languages, multi-alternative code snipt!
 
+Concept Version:
+```
+001 - Initial golang compiler concept
+002 - Added Python interpreter & language selector
+```
+
 ### Create docker for Raspberry Pi / ARM64
 ```
 $ sudo docker-compose -f docker-compose-aarch64.yml up --build -d
@@ -29,4 +35,8 @@ sudo docker run \
 --name SkillsCoder \
 gcclinux/skillscoder:amd64
 ```
-![test](screenshot/Skillscoder.png)
+v001
+![001](screenshot/Skillscoder001.png)
+
+v002
+![002](screenshot/Skillscoder002.png)

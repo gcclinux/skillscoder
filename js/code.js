@@ -33,7 +33,12 @@ document.getElementById('myForm').addEventListener('submit', function(e) {
         })
         .then(response => response.json())
         .then(data => {
-            document.getElementById('output').value = data.output;
+            if (!data.output) {
+                document.getElementById('output').value = 'Incorrect syntax detected. Please check your code & language and try again.';
+            } else {
+                document.getElementById('output').value = data.output;
+            }
+            
         })
         .catch((error) => {
             console.error('Error:', error);
