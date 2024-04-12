@@ -14,6 +14,16 @@ button[type="submit"] {
     color: purple; 
 }
 
+.select {
+    font-size: 30px;
+    font-weight: bolder;
+    color: rgb(15, 128, 0);
+    height: 40px; /* Set the height */
+    width: 150px; /* Set the width */
+    padding-right: 2px; /* Remove padding */
+    box-sizing: border-box; /* Include border and padding in element's total width and height */
+}
+
 .title {
     font-size: 40px;
     font-weight: bolder;

@@ -1,0 +1,22 @@
+version: '3'
+services:
+  app:
+    build: .
+    image: gcclinux/skillscoder:aarch64
+    restart: always
+    container_name: SkillsCoder
+    ports:
+      - 8000:8000
+    volumes:
+      - ./README.md:/app/README.md
+      - ./go.mod:/app/go.mod
+      - ./go.sum:/app/go.sum
+      - ./code:/app/code
+      - ./css:/app/css
+      - ./html:/app/html
+      - ./js:/app/js
+      - ./img:/app/img
+      - ./routes:/app/routes
+      - ./main.go:/app/main.go
+    working_dir: /app
+    command: bash -c "go build -o skills *.go && ./skills"

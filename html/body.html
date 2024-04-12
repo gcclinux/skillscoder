@@ -1,7 +1,11 @@
-<form id="myForm">
+<form id="myForm" action="/submit" method="post">
     <p class="bordered">Enter your code snippet here:</p><BR>
     <textarea id="myTextarea"></textarea>
     <br>
+    <select class="select" id="myDropdown" name="dropdown">
+        <option value="golang" selected>Go</option>
+        <option value="python">Python</option>
+    </select>
     <button type="submit">Submit</button>
 </form>
 

@@ -9,6 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// SetupRoutes	sets up the routes for the application
 func SetupRoutes(r *gin.Engine) {
 	r.GET("/", func(c *gin.Context) {
 		content, err := os.ReadFile("html/body.html") // read the body content from a file
@@ -27,29 +28,53 @@ func SetupRoutes(r *gin.Engine) {
 	r.Static("/css", "css")   // serve the css folder
 	r.Static("/img", "img")   // serve the images folder
 
-	r.POST("/code/test.go", func(c *gin.Context) {
+	// Handle the POST request to save the code and run the command
+	r.POST("/submit", func(c *gin.Context) {
 		var json struct {
-			Content string `json:"content"`
+			Content  string `json:"content"`
+			Dropdown string `json:"dropdown"` // Add this line
 		}
 
 		if err := c.BindJSON(&json); err == nil {
-			path := "./code/test.go"
-			err := os.WriteFile(path, []byte(json.Content), 0644)
-			if err != nil {
-				log.Printf("Error writing file: %v", err)
-				c.JSON(500, gin.H{"status": "unable to save file"})
-				return
-			}
-			// Run the command after the file is saved
-			cmd := exec.Command("go", "run", path)
-			output, err := cmd.CombinedOutput()
-			if err != nil {
-				log.Printf("Error running command: %v", err)
-				c.JSON(500, gin.H{"status": "unable to run command", "error": err.Error()})
-				return
+
+			outputStr := ""
+
+			if json.Dropdown == "golang" {
+				path := "./code/test.go"
+				err := os.WriteFile(path, []byte(json.Content), 0644)
+				if err != nil {
+					log.Printf("Error writing file: %v", err)
+					c.JSON(500, gin.H{"status": "unable to save file"})
+					return
+				}
+				// Run the command after the file is saved
+				cmd := exec.Command("go", "run", path)
+				output, err := cmd.CombinedOutput()
+				if err != nil {
+					log.Printf("Error running command: %v", err)
+					c.JSON(500, gin.H{"status": "unable to run command", "error": err.Error()})
+					return
+				}
+				outputStr = string(output) // convert output to string
+			} else if json.Dropdown == "python" {
+				path := "./code/test.py"
+				err := os.WriteFile(path, []byte(json.Content), 0644)
+				if err != nil {
+					log.Printf("Error writing file: %v", err)
+					c.JSON(500, gin.H{"status": "unable to save file"})
+					return
+				}
+				// Run the command after the file is saved
+				cmd := exec.Command("python", path)
+				output, err := cmd.CombinedOutput()
+				if err != nil {
+					log.Printf("Error running command: %v", err)
+					c.JSON(500, gin.H{"status": "unable to run command", "error": err.Error()})
+					return
+				}
+				outputStr = string(output) // convert output to string
 			}
 
-			outputStr := string(output) // convert output to string
 			c.JSON(200, gin.H{"status": "file saved and command run", "output": outputStr})
 		} else {
 			c.JSON(400, gin.H{"status": "unable to bind JSON"})
