@@ -24,7 +24,8 @@ func main() {
     fmt.Println("hello world")
 }`;
 
-if (content.trim() === example1 || content.trim() === example2) {
+if (content.trim() === example1 || 
+    content.trim() === example2) {
     content = newContent;
 }
 
@@ -33,7 +34,15 @@ if (content.trim() === example1 || content.trim() === example2) {
 var example3 = `message = "Hello, world!"
 print(message)`;
 
-if (content.trim() === example3) {
+var example4 = `text = "Hello, world!"
+print(message)`;
+
+var example5 = `msg = "Hello, world!"
+print(message)`;
+
+if (content.trim() === example3 || 
+    content.trim() === example4 || 
+    content.trim() === example5) {
     content = `print("Hello, world!")`;
 }
 

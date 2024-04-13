@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"ricardow/functions"
 
 	"github.com/gin-gonic/gin"
 )
@@ -27,6 +28,34 @@ func SetupRoutes(r *gin.Engine) {
 	r.Static("/code", "code") // serve the code folder
 	r.Static("/css", "css")   // serve the css folder
 	r.Static("/img", "img")   // serve the images folder
+
+	// Handle the POST request with username & password to login
+	r.POST("/login", func(c *gin.Context) {
+		var json struct {
+			Username string `json:"username"`
+			Password string `json:"password"`
+		}
+
+		if err := c.BindJSON(&json); err == nil {
+			// Look up the user in the database
+			user, err := functions.GetUserFromDatabase(json.Username)
+			if err != nil {
+				c.JSON(500, gin.H{"status": "error", "message": "Failed to get user"})
+				return
+			}
+
+			// Check the password
+			if user == "" {
+				c.JSON(401, gin.H{"status": "error", "message": "User not found"})
+			} else if user.Password != json.Password {
+				c.JSON(401, gin.H{"status": "error", "message": "Incorrect password"})
+			} else {
+				c.JSON(200, gin.H{"status": "success", "message": "Logged in successfully"})
+			}
+		} else {
+			c.JSON(400, gin.H{"status": "unable to bind JSON"})
+		}
+	})
 
 	// Handle the POST request to save the code and run the command
 	r.POST("/submit", func(c *gin.Context) {
