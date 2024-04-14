@@ -38,16 +38,16 @@ func SetupRoutes(r *gin.Engine) {
 
 		if err := c.BindJSON(&json); err == nil {
 			// Look up the user in the database
-			user, err := functions.GetUserFromDatabase(json.Username)
+			password, err := functions.GetUserFromDatabase(json.Username)
 			if err != nil {
 				c.JSON(500, gin.H{"status": "error", "message": "Failed to get user"})
 				return
 			}
 
 			// Check the password
-			if user == "" {
+			if password == "" {
 				c.JSON(401, gin.H{"status": "error", "message": "User not found"})
-			} else if user.Password != json.Password {
+			} else if password != json.Password {
 				c.JSON(401, gin.H{"status": "error", "message": "Incorrect password"})
 			} else {
 				c.JSON(200, gin.H{"status": "success", "message": "Logged in successfully"})
