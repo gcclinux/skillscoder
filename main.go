@@ -16,7 +16,7 @@ func main() {
 
 	routes.SetupRoutes(r)
 
-	port := "8000"
+	port := "8010"
 	address := "0.0.0.0:" + port
 	fmt.Printf("\nServer is running at http://%s\n\n", "localhost:"+port)
 	r.Run(address)

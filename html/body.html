@@ -1,7 +1,16 @@
 <form id="myForm" action="/submit" method="post">
-    <p class="bordered">Enter your code snip:</p><BR>
+    <p class="bordered">ENTER OR PASTE YOUR CODE SNIP</p><BR>
     <textarea id="myTextarea"></textarea>
-    <br>
+    
+    <BR><p class="bordered">ALTERNATIVE CODE / SYNTAX OPTIONS</p><BR>
+        <textarea id="resultTextarea" readonly></textarea>
+        
+    <BR><p class="bordered">OUTPUT RESULT</p><BR>
+    <textarea id="output" readonly></textarea>
+
+    <BR><p class="bordered">CHARACTER REDUCTION</p><BR>
+    <input type="text" id="reduction" readonly>
+    <BR><BR>
     <select class="select" id="myDropdown" name="dropdown">
         <option value="golang" selected>Go</option>
         <option value="python">Python</option>
@@ -9,11 +18,5 @@
     <button type="submit">Submit</button>
 </form>
 
-<p class="bordered">Alternative code / syntax option</p><BR>
-<textarea id="resultTextarea" readonly></textarea>
-
-<BR><p class="bordered">Output Result</p><BR>
-<textarea id="output" readonly></textarea>
-
 <script src="js/code.js"></script>
-<script src="js/contentCheck.js"></script>
+<script src="js/code-rules.js"></script>
