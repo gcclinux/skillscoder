@@ -4,6 +4,39 @@ function checkContent(content) {
 var originalLength = content.length;
 
 // ######### GOLANG BASIC RULES #########
+
+// Match all lines of variable declarations of the same type RULE 0
+var rule0 = /^(\s*)var (\w+) (int|string|float32|float64) = (\d+|".*")$/gm;
+var match;
+var lines = [];
+var types = {};
+while ((match = rule0.exec(content)) !== null) {
+    var type = match[3];
+    if (!types[type]) {
+        types[type] = [];
+    }
+    types[type].push(match);
+}
+
+for (var type in types) {
+    var lines = types[type];
+    if (lines.length > 1) {
+        var replacement = lines[0][1] + 'var ';
+        var names = [];
+        var values = [];
+        for (var i = 0; i < lines.length; i++) {
+            names.push(lines[i][2]);
+            values.push(lines[i][4]);
+        }
+        replacement += names.join(', ') + ' ' + type + ' = ' + values.join(', ');
+
+        var original = lines.map(function(line) {
+            return line[0];
+        }).join('\n');
+        content = content.replace(original, replacement);
+    }
+}
+
 // Go Regular expression to match the pattern string variable RULE 1
 var rule1 = /^(\s*)var (\w+) string = "(.*)"$/gm;
 // Replace the line with the new format
@@ -15,7 +48,7 @@ if (rule1.test(content)) {
 var rule2 = /^(\s*)var (\w+) int = (\d+)$/gm;
 // Replace the line with the new format
 if (rule2.test(content)) {
-    content = content.replace(rule2, '$1$2 := "$3"');
+    content = content.replace(rule2, '$1$2 := $3');
 }
 
 // Go Regular expression to match the pattern float32|float64 variable RULE 3
@@ -50,7 +83,10 @@ if (content.trim() === example3 ||
 }
 
 // Calculate the difference in character count
+// Calculate the difference in character count
 var difference = originalLength - content.length;
+var calculate = (difference / originalLength) * 100;
+var percentage = calculate.toFixed(2);
 
-return { content: content, difference: difference };
+return {content: content, original: originalLength, difference: difference, percentage: percentage};
 }

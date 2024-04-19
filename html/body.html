@@ -8,8 +8,10 @@
     <BR><p class="bordered">OUTPUT RESULT</p><BR>
     <textarea id="output" readonly></textarea>
 
-    <BR><p class="bordered">CHARACTER REDUCTION</p><BR>
+    <BR><p class="bordered">CODE REDUCTION [ORIGINAL] [PROPOSED] [DIFFERENCE]</p><BR>
+    <input type="text" id="original" readonly>
     <input type="text" id="reduction" readonly>
+    <input type="text" id="percentage" readonly>
     <BR><BR>
     <select class="select" id="myDropdown" name="dropdown">
         <option value="golang" selected>Go</option>
@@ -18,5 +20,6 @@
     <button type="submit">Submit</button>
 </form>
 
+<script src="js/example.js"></script>
 <script src="js/code.js"></script>
 <script src="js/code-rules.js"></script>

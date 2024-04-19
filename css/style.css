@@ -57,7 +57,16 @@ textarea {
     width: 80%; 
     height: 200px;
 }
-input {
-    width: 80%; 
-    text-align: center;
+@media only screen and (max-width: 599px) {
+    input {
+        width: 80%; 
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    input {
+        width: 26.44%; 
+        text-align: center;
+    }
 }

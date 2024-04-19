@@ -4,8 +4,6 @@ document.getElementById('myForm').addEventListener('submit', function(e) {
     e.preventDefault(); 
     var content = document.getElementById('myTextarea').value;
     var dropdown = document.getElementById('myDropdown').value;
-    console.log("This is the content of the textarea I:", content);
-    console.log("This is the value of the dropdown:", dropdown);
     
     // Check and replace the content if necessary
     var result = checkContent(content);
@@ -17,7 +15,7 @@ document.getElementById('myForm').addEventListener('submit', function(e) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({content: content, dropdown: dropdown, difference: result.difference})
+        body: JSON.stringify({content: content, dropdown: dropdown, original: result.originalLength, difference: result.difference, percentage: result.percentage})
     })
     .then(response => response.json())
     .then(data => {
@@ -31,7 +29,7 @@ document.getElementById('myForm').addEventListener('submit', function(e) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({content: content, dropdown: dropdown, difference: result.difference})
+        body: JSON.stringify({content: content, dropdown: dropdown, original: result.originalLength, difference: result.difference, percentage: result.percentage})
     })
     .then(response => response.json())
     .then(data => {
@@ -42,20 +40,61 @@ document.getElementById('myForm').addEventListener('submit', function(e) {
         }
     })
 
-    // Fetch the output data
+    // Fetch the originalLength data
     fetch('/submit', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({content: content, dropdown: dropdown, reduction: result.difference})
+        body: JSON.stringify({content: content, dropdown: dropdown, original: result.originalLength, difference: result.difference, percentage: result.percentage})
     })
     .then(response => response.json())
     .then(data => {
-        console.log("Character count reduced by: ", result.difference);
         console.log(data);
-        document.getElementById('reduction').value = result.difference;
+        console.log("Character count reduced by: ", result.original + " bytes");
+        document.getElementById('original').value = result.original + " bytes";
     })
+
+    // Fetch the difference data
+    fetch('/submit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({content: content, dropdown: dropdown, original: result.originalLength, difference: result.difference, percentage: result.percentage})
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        console.log("Character count reduced by: ", result.difference + " bytes");
+        document.getElementById('reduction').value = result.difference + " bytes";
+    })
+
+    // Fetch the percentage data
+    fetch('/submit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({content: content, dropdown: dropdown, original: result.originalLength, difference: result.difference, percentage: result.percentage})
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        console.log("Character count reduced by: ", result.percentage + "%");
+        document.getElementById('percentage').value = result.percentage + "%";
+
+        // Get the input element
+        var input = document.getElementById('percentage');
+
+        // Check if the value is more than 0
+        if (parseFloat(input.value) > 0) {
+            // If it is, set the background color to green
+            input.style.backgroundColor = 'green';
+            input.style.color = 'white';
+        }
+    })
+        
     .catch((error) => {
         console.error('Error:', error);
     });
@@ -64,14 +103,3 @@ document.getElementById('myForm').addEventListener('submit', function(e) {
         console.error('Error:', error);
     });
 });
-
-// Set the default content of the textarea
-window.onload = function() {
-    document.getElementById('myTextarea').value = `package main
-import "fmt"
-
-func main() {
-    hello := "hello world"
-    fmt.Println(hello)
-}`;
-};

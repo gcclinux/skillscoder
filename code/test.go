@@ -2,8 +2,7 @@ package main
 import "fmt"
 
 func main() {
-    num1 := 1.32
-    num2 := 1.64
-    num3 := num1 + num2
-    fmt.Println(num3)
+    var num1, num2, num3, num4 int = 51, 45, 28, 78
+    var num5 int = (((num1 + num2) * num3) / num4)
+    fmt.Println(num5)
 }
