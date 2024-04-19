@@ -35,8 +35,5 @@ sudo docker run \
 --name SkillsCoder \
 gcclinux/skillscoder:amd64
 ```
-v001
-![001](screenshot/Skillscoder001.png)
-
-v002
-![002](screenshot/Skillscoder002.png)
+Update 3
+![003](screenshot/Skillscoder003.png)
