@@ -6,6 +6,7 @@ Concept Version:
 ```
 001 - Initial golang compiler concept
 002 - Added Python interpreter & language selector
+003 - Added new rules for the Go languages
 ```
 
 ### Create docker for Raspberry Pi / ARM64
