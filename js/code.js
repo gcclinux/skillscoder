@@ -22,7 +22,6 @@ document.getElementById('myForm').addEventListener('submit', function(e) {
         console.log(data);
         document.getElementById('resultTextarea').value = content;
 
-
     // Fetch the output data
     fetch('/submit', {
         method: 'POST',
@@ -33,10 +32,18 @@ document.getElementById('myForm').addEventListener('submit', function(e) {
     })
     .then(response => response.json())
     .then(data => {
-        if (!data.output) {
-            document.getElementById('output').value = 'Incorrect syntax detected. Please check your code & language and try again.';
+        if (!content.startsWith('package')) {
+            document.getElementById('output').value = 'Your code should always start with package name. Example: \n\npackage main';
+            output.style.color = 'red';
+        } else if (content.includes('fmt.') && !content.includes('import "fmt"')) {
+            document.getElementById('output').value = 'Your code is missing [import "fmt"] after package name, Example: \n\npackage main \nimport "fmt"';
+            output.style.color = 'red';
+        } else if (!data.output) {
+            document.getElementById('output').value = 'Incorrect syntax detected. Please check your code & language then try again.';
+            output.style.color = 'red';
         } else {
             document.getElementById('output').value = data.output;
+            output.style.color = 'black';
         }
     })
 
