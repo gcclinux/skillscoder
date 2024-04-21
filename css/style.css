@@ -37,6 +37,10 @@ button[type="submit"] {
     font-style: italic;
 }
 
+.labelwidth {
+    width: 79.5%; 
+}
+
 body {
     border: 40px dashed purple; 
     padding: 20px; 
@@ -54,8 +58,9 @@ body {
     height: 100vh;
 }
 textarea {
-    width: 80%; 
+    width: 79.4%; 
     height: 200px;
+    padding: 10px;
 }
 @media only screen and (max-width: 599px) {
     input {
