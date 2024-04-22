@@ -11,10 +11,11 @@ services:
       - ./README.md:/app/README.md
       - ./go.mod:/app/go.mod
       - ./go.sum:/app/go.sum
-      - ./code:/app/code
+      - ./repo:/app/repo
       - ./css:/app/css
       - ./html:/app/html
       - ./js:/app/js
+      - ./rules:/app/rules
       - ./img:/app/img
       - ./routes:/app/routes
       - ./main.go:/app/main.go

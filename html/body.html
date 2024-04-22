@@ -1,4 +1,14 @@
 <form id="myForm" action="/submit" method="post">
+    <div class="container">
+        <div class="language">SELECT</div>
+        <div class="select">
+            <select class="select" id="myDropdown" name="dropdown" onchange="updateValue()">
+                <option value="golang" selected>Go</option>
+                <option value="python">Python</option>
+            </select>
+        </div>
+    </div>
+
     <p class="bordered labelwidth">ENTER OR PASTE YOUR CODE SNIP</p><BR>
     <textarea id="myTextarea"></textarea>
     
@@ -13,13 +23,10 @@
     <input type="text" id="reduction" readonly>
     <input type="text" id="percentage" readonly>
     <BR><BR>
-    <select class="select" id="myDropdown" name="dropdown">
-        <option value="golang" selected>Go</option>
-        <option value="python">Python</option>
-    </select>
     <button type="submit">Submit</button>
 </form>
 
 <script src="js/example.js"></script>
 <script src="js/code.js"></script>
-<script src="js/code-rules.js"></script>
+<script src="rules/go-rules.js"></script>
+<script src="rules/python-rules.js"></script>

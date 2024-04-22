@@ -15,7 +15,8 @@ LABEL app.name="SkillsCoder" app.version="003"
 ADD README.md /app/README.md
 ADD go.mod /app/go.mod
 ADD go.sum /app/go.sum
-ADD code/ /app/code
+ADD repo/ /app/repo
+ADD rules/ /app/rules
 ADD css/ /app/css
 ADD html/ /app/html
 ADD js/ /app/js

@@ -1,11 +1,11 @@
-function checkContent(content) {
+function goContent(content) {
 
 // Store the original content length
 var originalLength = content.length;
 
 // ######### GOLANG BASIC RULES #########
-
 // Match all lines of variable declarations of the same type if they are in the same block {} - RULE 0
+
 // Split the content into blocks
 var blocks = content.split(/(?<=\})/gm);
 
@@ -77,24 +77,6 @@ if (rule4.test(content)) {
     content = content.replace(rule4, '$1$2 := $4');
 }
 
-// ######### PYTHON RULES IDEAS #########
-// Check if the Python content is equal to the example code
-var example3 = `message = "Hello, world!"
-print(message)`;
-
-var example4 = `text = "Hello, world!"
-print(message)`;
-
-var example5 = `msg = "Hello, world!"
-print(message)`;
-
-if (content.trim() === example3 || 
-    content.trim() === example4 || 
-    content.trim() === example5) {
-    content = `print("Hello, world!")`;
-}
-
-// Calculate the difference in character count
 // Calculate the difference in character count
 var difference = originalLength - content.length;
 var calculate = (difference / originalLength) * 100;

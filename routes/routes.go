@@ -18,15 +18,16 @@ func SetupRoutes(r *gin.Engine) {
 		}
 
 		c.HTML(200, "index.html", gin.H{
-			"Title": "Welcome to SkillsCoder! (Concept)",
+			"Title": "Welcome to SkillsCoder! (Concept - build 004)",
 			"Body":  template.HTML(content), // convert the content to HTML
 		}) // render the HTML file with data
 	})
 
-	r.Static("/js", "js")     // serve the js folder
-	r.Static("/code", "code") // serve the code folder
-	r.Static("/css", "css")   // serve the css folder
-	r.Static("/img", "img")   // serve the images folder
+	r.Static("/js", "js")       // serve the js folder
+	r.Static("/css", "css")     // serve the css folder
+	r.Static("/img", "img")     // serve the images folder
+	r.Static("/repo", "repo")   // serve the repo folder
+	r.Static("/rules", "rules") // serve the rules folder
 
 	// Handle the POST request to save the code and run the command
 	r.POST("/submit", func(c *gin.Context) {
@@ -40,7 +41,7 @@ func SetupRoutes(r *gin.Engine) {
 			outputStr := ""
 
 			if json.Dropdown == "golang" {
-				path := "./code/test.go"
+				path := "./repo/test.go"
 				err := os.WriteFile(path, []byte(json.Content), 0644)
 				if err != nil {
 					log.Printf("Error writing file: %v", err)
@@ -57,7 +58,7 @@ func SetupRoutes(r *gin.Engine) {
 				}
 				outputStr = string(output) // convert output to string
 			} else if json.Dropdown == "python" {
-				path := "./code/test.py"
+				path := "./repo/test.py"
 				err := os.WriteFile(path, []byte(json.Content), 0644)
 				if err != nil {
 					log.Printf("Error writing file: %v", err)

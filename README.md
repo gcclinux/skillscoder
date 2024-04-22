@@ -7,6 +7,7 @@ Concept Version:
 001 - Initial golang compiler concept
 002 - Added Python interpreter & language selector
 003 - Added new rules for the Go languages
+004 - Added dynamic sample on code select, simple python rule, split rules in own files
 ```
 
 ### Create docker for Raspberry Pi / ARM64
@@ -28,13 +29,28 @@ docker pull gcclinux/skillscoder:adm64
 
 ### Run container after pulling it down.
 ```
+Linux:
+
 sudo docker run \
 --detach \
 --interactive \
 --restart=always \
 --publish 80:8000 \
+--volume /opt/skillscoder/repo:/app/repo \
+--name SkillsCoder \
+gcclinux/skillscoder:amd64
+```
+```
+Windows:
+
+docker run \
+--detach \
+--interactive \
+--restart=always \
+--publish 80:8000 \
+--volume //c/Users/YourUser/skillscoder/repo:/app/repo \
 --name SkillsCoder \
 gcclinux/skillscoder:amd64
 ```
 Update 3
-![003](screenshot/Skillscoder003.png)
+![004](screenshot/skillscoder004.png)

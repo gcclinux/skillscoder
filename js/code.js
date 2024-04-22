@@ -1,3 +1,9 @@
+window.addEventListener('valueUpdated', function(event) {
+    // The new value is in event.detail
+    var currentValue = event.detail;
+    SelectedLanguage(currentValue);
+    document.getElementById('myDropdown').value = currentValue;
+});
 
 // Add an event listener to the form to prevent the default form submission
 document.getElementById('myForm').addEventListener('submit', function(e) {
@@ -6,7 +12,12 @@ document.getElementById('myForm').addEventListener('submit', function(e) {
     var dropdown = document.getElementById('myDropdown').value;
     
     // Check and replace the content if necessary
-    var result = checkContent(content);
+    if (dropdown === 'golang') {
+        var result = goContent(content);
+    } else if (dropdown === 'python') {
+        var result = pythonContent(content);
+    }
+    
     content = result.content;
 
     // Send the content and dropdown value to a server-side script to save it to a file
@@ -32,10 +43,10 @@ document.getElementById('myForm').addEventListener('submit', function(e) {
     })
     .then(response => response.json())
     .then(data => {
-        if (!content.startsWith('package')) {
+        if (!content.startsWith('package') && dropdown == 'golang') {
             document.getElementById('output').value = 'Your code should always start with package name. Example: \n\npackage main';
             output.style.color = 'red';
-        } else if (content.includes('fmt.') && !content.includes('import "fmt"')) {
+        } else if (content.includes('fmt.') && !content.includes('import "fmt"') && dropdown == 'golang') {
             document.getElementById('output').value = 'Your code is missing [import "fmt"] after package name, Example: \n\npackage main \nimport "fmt"';
             output.style.color = 'red';
         } else if (!data.output) {

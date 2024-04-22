@@ -14,15 +14,32 @@ button[type="submit"] {
     color: purple; 
 }
 
-.select {
+.container {
+    text-align: left;
+    width: 100%;
+    margin-left: 10%;
+}
+
+.language {
     font-size: 30px;
     font-weight: bolder;
-    color: rgb(15, 128, 0);
-    height: 40px; /* Set the height */
-    width: 150px; /* Set the width */
-    padding-right: 2px; /* Remove padding */
-    box-sizing: border-box; /* Include border and padding in element's total width and height */
+    color: purple;
+    height: 40px;
+    width: 150px;
+    box-sizing: border-box;
+    display: inline-block; /* Add this line */
 }
+
+.select {
+    font-size: 23px;
+    font-weight: bolder;
+    color: rgb(15, 128, 0);
+    height: 35px;
+    width: 150px;
+    box-sizing: border-box;
+    display: inline-block; /* Add this line */
+}
+
 
 .title {
     font-size: 40px;
