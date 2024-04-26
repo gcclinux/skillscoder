@@ -1,21 +1,31 @@
 document.getElementById('sizeSelect').addEventListener('change', function() {
     var textarea = document.getElementById('myTextarea');
     var resultTextarea = document.getElementById('resultTextarea');
+    var outTextarea = document.getElementById('output');
     var textareaContainer = document.getElementById('textareaContainer');
+    var inputarea = document.getElementById('inputarea');
     switch (this.value) {
         case 'hori':
             textarea.style.width = '99.3%';
-            textarea.style.height = '320px';
+            textarea.style.height = '300px';
             resultTextarea.style.width = '99.3%';
-            resultTextarea.style.height = '320px';
+            resultTextarea.style.height = '300px';
+            outTextarea.style.width = '90.45%';
+            outTextarea.style.marginLeft = '0.4%';
+            outTextarea.style.height = '200px';
             textareaContainer.style.flexDirection = 'column';
             break;
         case 'vert':
+            textarea.style.marginLeft = '-0.1%';
             textarea.style.width = '50%';
             resultTextarea.style.width = '50%';
-            textarea.style.height = '760px';
-            resultTextarea.style.height = '760px';
+            textarea.style.height = '750px';
+            resultTextarea.style.height = '750px';
+            outTextarea.style.width = '90.2%';
+            outTextarea.style.marginLeft = '-0.1%';
+            outTextarea.style.height = '200px';
             textareaContainer.style.flexDirection = 'row';
+            inputarea.style.width = '30%';
             break;
         case 'default':
             location.reload();

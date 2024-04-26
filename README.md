@@ -8,7 +8,7 @@ Concept Version:
 002 - Added Python interpreter & language selector
 003 - Added new rules for the Go languages
 004 - Added dynamic sample on code select, simple python rule, split rules in own files
-005 - Added layout style for more confort
+005 - Added layout style for more confort based on fixed size window
 ```
 
 ### Create docker for Raspberry Pi / ARM64
@@ -53,5 +53,5 @@ docker run \
 --name SkillsCoder \
 gcclinux/skillscoder:amd64
 ```
-Update 3
-![004](screenshot/skillscoder004.png)
+Update 5
+![005](screenshot/skillscoder005.png)

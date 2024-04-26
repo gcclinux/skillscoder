@@ -3,12 +3,13 @@ html, body {
     justify-content: center;
     align-items: center;
     height: 100%;
-    width: 100%;
+    width: 1920px;
+    max-width: 1920px;
+    min-width: 1920px;
 }
 
 body {
-    border: 40px dashed purple; 
-    padding: 20px; 
+    border: 40px dashed purple;  
     background-color: #f9f9f9;
     font-family: Arial, sans-serif;
     text-align: center;
@@ -30,8 +31,7 @@ button[type="submit"] {
 .container {
     display: flex;
     justify-content: space-between;
-    margin-left: 10%; /* Add this line */
-    margin-right: 10%; /* Add this line */
+    align-items: center;
 }
 
 .tableview, .sizeSelect {
@@ -46,6 +46,7 @@ button[type="submit"] {
     width: 150px;
     box-sizing: border-box;
     display: inline-block; /* Add this line */
+    margin-left: 4%;
 }
 
 .tableview {
@@ -68,6 +69,10 @@ button[type="submit"] {
     display: inline-block; /* Add this line */
 }
 
+.layout {
+    margin-right: 4.45%;
+}
+
 
 .title {
     font-size: 40px;
@@ -75,19 +80,16 @@ button[type="submit"] {
     color: purple;
 }
 
+.titlestring {
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
 .bordered {
     border: 5px solid purple;
     display: inline-block;
     padding: 5px;
     font-style: italic;
-}
-
-.labelwidth {
-    width: 79.6%; 
-}
-
-.output {
-    width: 79.4%;
 }
 
 .center {
@@ -98,29 +100,22 @@ button[type="submit"] {
     height: 100vh;
 }
 textarea {
-    width: 80%; 
+    width: 80vw; 
     height: 300px;  
     padding: 10px;
+}
+.output {
+    width: 90%;
 }
 
 #textareaContainer {
     display: flex;
     justify-content: center; 
-    align-items: center;
-    width: 80%;
-    margin-left: 10%;
+    width: 91.2%;
+    margin-left: 4.4%;
 }
 
-@media only screen and (max-width: 599px) {
-    input {
-        width: 80%; 
-        text-align: center;
-    }
-}
-
-@media only screen and (min-width: 600px) {
-    input {
-        width: 26.44%; 
-        text-align: center;
-    }
+.inputarea {
+    width: 29.9%; 
+    text-align: center;
 }
