@@ -7,26 +7,33 @@
                 <option value="python">Python</option>
             </select>
         </div>
+        <div class="tableview">LAYOUT</div>
+        <div class="select">
+            <select class="select" id="sizeSelect">
+                <option value="default">Default</option>
+                <option value="hori">Horizontal</option>
+                <option value="vert">Vertical</option>
+            </select>
+        </div>
     </div>
 
-    <p class="bordered labelwidth">ENTER OR PASTE YOUR CODE SNIP</p><BR>
-    <textarea id="myTextarea"></textarea>
-    
-    <BR><p class="bordered labelwidth">ALTERNATIVE CODE / SYNTAX OPTIONS</p><BR>
-        <textarea id="resultTextarea" readonly></textarea>
-        
-    <BR><p class="bordered labelwidth">OUTPUT RESULT</p><BR>
-    <textarea id="output" readonly></textarea>
+    <div id="textareaContainer">
+            <textarea id="myTextarea"></textarea>
+            <textarea id="resultTextarea" readonly></textarea>
+    </div>
 
-    <BR><p class="bordered labelwidth">CODE REDUCTION [ORIGINAL] [PROPOSED] [DIFFERENCE]</p><BR>
+    <textarea class="output" id="output" readonly></textarea>
+
     <input type="text" id="original" readonly>
     <input type="text" id="reduction" readonly>
     <input type="text" id="percentage" readonly>
     <BR><BR>
     <button type="submit">Submit</button>
 </form>
+<script>
 
-<script src="js/example.js"></script>
+</script>
+<script src="js/default.js"></script>
 <script src="js/code.js"></script>
 <script src="rules/go-rules.js"></script>
 <script src="rules/python-rules.js"></script>

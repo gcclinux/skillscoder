@@ -1,3 +1,30 @@
+document.getElementById('sizeSelect').addEventListener('change', function() {
+    var textarea = document.getElementById('myTextarea');
+    var resultTextarea = document.getElementById('resultTextarea');
+    var textareaContainer = document.getElementById('textareaContainer');
+    switch (this.value) {
+        case 'hori':
+            textarea.style.width = '99.3%';
+            textarea.style.height = '320px';
+            resultTextarea.style.width = '99.3%';
+            resultTextarea.style.height = '320px';
+            textareaContainer.style.flexDirection = 'column';
+            break;
+        case 'vert':
+            textarea.style.width = '50%';
+            resultTextarea.style.width = '50%';
+            textarea.style.height = '760px';
+            resultTextarea.style.height = '760px';
+            textareaContainer.style.flexDirection = 'row';
+            break;
+        case 'default':
+            location.reload();
+            break;
+    }
+    // Force a reflow by accessing offsetHeight
+    textareaContainer.offsetHeight;
+});
+
 function updateValue() {
     var dropdown = document.getElementById('myDropdown');
     var currentValue = dropdown.value;

@@ -1,6 +1,6 @@
 # Skills Coder
 
-SkillsCoder is an online code playground with realtime preview of alternative code improvements, currently in concept stage, included Go and python as this stage but will be adding multi-user, more-languages, alternative code snipt!
+SkillsCoder is an online code playground with realtime preview of alternative code improvements, currently in concept stage, included Go and Python as this stage but will be adding multi-user, more-languages, alternative code snipt, many more coding rules!
 
 Concept Version:
 ```
@@ -8,6 +8,7 @@ Concept Version:
 002 - Added Python interpreter & language selector
 003 - Added new rules for the Go languages
 004 - Added dynamic sample on code select, simple python rule, split rules in own files
+005 - Added layout style for more confort
 ```
 
 ### Create docker for Raspberry Pi / ARM64

@@ -1,6 +1,19 @@
 html, body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
     width: 100%;
+}
+
+body {
+    border: 40px dashed purple; 
+    padding: 20px; 
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 html {
@@ -15,9 +28,14 @@ button[type="submit"] {
 }
 
 .container {
-    text-align: left;
-    width: 100%;
-    margin-left: 10%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10%; /* Add this line */
+    margin-right: 10%; /* Add this line */
+}
+
+.tableview, .sizeSelect {
+    margin-left: auto;
 }
 
 .language {
@@ -26,6 +44,16 @@ button[type="submit"] {
     color: purple;
     height: 40px;
     width: 150px;
+    box-sizing: border-box;
+    display: inline-block; /* Add this line */
+}
+
+.tableview {
+    font-size: 30px;
+    font-weight: bolder;
+    color: purple;
+    height: 40px;
+    width: 170px;
     box-sizing: border-box;
     display: inline-block; /* Add this line */
 }
@@ -55,18 +83,13 @@ button[type="submit"] {
 }
 
 .labelwidth {
-    width: 79.5%; 
+    width: 79.6%; 
 }
 
-body {
-    border: 40px dashed purple; 
-    padding: 20px; 
-    background-color: #f9f9f9;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    display: table-cell;
-    vertical-align: middle;
+.output {
+    width: 79.4%;
 }
+
 .center {
     display: flex;
     flex-direction: column;
@@ -75,10 +98,19 @@ body {
     height: 100vh;
 }
 textarea {
-    width: 79.4%; 
-    height: 200px;
+    width: 80%; 
+    height: 300px;  
     padding: 10px;
 }
+
+#textareaContainer {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    width: 80%;
+    margin-left: 10%;
+}
+
 @media only screen and (max-width: 599px) {
     input {
         width: 80%; 
