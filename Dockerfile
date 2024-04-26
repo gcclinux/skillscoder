@@ -9,7 +9,7 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 WORKDIR /app
 
 # Set the app name and version
-LABEL app.name="SkillsCoder" app.version="004"
+LABEL app.name="SkillsCoder" app.version="005"
 
 # Copy the local package files to the container's workspace.
 ADD README.md /app/README.md
