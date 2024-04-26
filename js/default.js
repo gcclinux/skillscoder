@@ -3,7 +3,6 @@ document.getElementById('sizeSelect').addEventListener('change', function() {
     var resultTextarea = document.getElementById('resultTextarea');
     var outTextarea = document.getElementById('output');
     var textareaContainer = document.getElementById('textareaContainer');
-    var inputarea = document.getElementById('inputarea');
     switch (this.value) {
         case 'hori':
             textarea.style.width = '99.3%';
@@ -25,7 +24,6 @@ document.getElementById('sizeSelect').addEventListener('change', function() {
             outTextarea.style.marginLeft = '-0.1%';
             outTextarea.style.height = '200px';
             textareaContainer.style.flexDirection = 'row';
-            inputarea.style.width = '30%';
             break;
         case 'default':
             location.reload();

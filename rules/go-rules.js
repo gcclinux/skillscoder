@@ -4,8 +4,8 @@ function goContent(content) {
 var originalLength = content.length;
 
 // ######### GOLANG BASIC RULES #########
-// Match all lines of variable declarations of the same type if they are in the same block {} - RULE 0
 
+// Match all lines of variable declarations of the same type if they are in the same block {} - RULE 0
 // Split the content into blocks
 var blocks = content.split(/(?<=\})/gm);
 
