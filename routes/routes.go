@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"html/template"
 	"log"
+	"net/http"
 	"os"
 	"os/exec"
 
@@ -11,15 +11,21 @@ import (
 
 // SetupRoutes	sets up the routes for the application
 func SetupRoutes(r *gin.Engine) {
+
+	// Set the global variable
+	r.Use(func(c *gin.Context) {
+		c.Set("globalVar", "GlobalValueKeyNotSetYet")
+		c.Next()
+	})
+
 	r.GET("/", func(c *gin.Context) {
-		content, err := os.ReadFile("html/body.html") // read the body content from a file
-		if err != nil {
-			log.Fatal(err)
-		}
+		// Get the global variable
+		globalVar := c.MustGet("globalVar").(string)
 
 		c.HTML(200, "index.html", gin.H{
-			"Title": "Welcome to SkillsCoder! (Concept - build 005)",
-			"Body":  template.HTML(content), // convert the content to HTML
+			"Title":     "SkillsCoder",
+			"SubTitle":  "Welcome to SkillsCoder! (Concept - build 006)",
+			"GlobalVar": globalVar, // use the global variable
 		}) // render the HTML file with data
 	})
 
@@ -79,6 +85,17 @@ func SetupRoutes(r *gin.Engine) {
 			c.JSON(200, gin.H{"status": "file saved and command run", "output": outputStr})
 		} else {
 			c.JSON(400, gin.H{"status": "unable to bind JSON"})
+		}
+	})
+
+	r.POST("/personalGlobalKey", func(c *gin.Context) {
+		var json struct {
+			GlobalVar string `json:"globalVar"`
+		}
+		if err := c.ShouldBindJSON(&json); err == nil {
+			//log.Println("New globalVar:", json.GlobalVar)
+		} else {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		}
 	})
 }

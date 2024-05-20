@@ -12,11 +12,12 @@ func main() {
 	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
 
-	r.LoadHTMLFiles("html/index.html") // load the HTML file
+	// Load the templates
+	r.LoadHTMLGlob("html/*")
 
 	routes.SetupRoutes(r)
 
-	port := "8001"
+	port := "8000"
 	address := "0.0.0.0:" + port
 	fmt.Printf("\nServer is running at http://%s\n\n", "localhost:"+port)
 	r.Run(address)
