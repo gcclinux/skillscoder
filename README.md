@@ -9,6 +9,7 @@ Concept Version:
 003 - Added new rules for the Go languages
 004 - Added dynamic sample on code select, simple python rule, split rules in own files
 005 - Added layout style for more confort based on fixed size window
+006 - Added multi-user personalkey id so that data stay stored inside the personal keys
 ```
 
 ### Create docker for Raspberry Pi / ARM64

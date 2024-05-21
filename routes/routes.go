@@ -9,6 +9,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+var GlobalVar string
+
 // SetupRoutes	sets up the routes for the application
 func SetupRoutes(r *gin.Engine) {
 
@@ -39,15 +41,24 @@ func SetupRoutes(r *gin.Engine) {
 	r.POST("/submit", func(c *gin.Context) {
 		var json struct {
 			Content  string `json:"content"`
-			Dropdown string `json:"dropdown"` // Add this line
+			Dropdown string `json:"dropdown"`
 		}
 
-		if err := c.BindJSON(&json); err == nil {
+		if err := c.ShouldBindJSON(&json); err == nil {
 
 			outputStr := ""
+			personalKey := GlobalVar
+			workDir := "./repo/" + personalKey
+
+			if _, err := os.Stat(workDir); os.IsNotExist(err) {
+				err := os.MkdirAll(workDir, 0755)
+				if err != nil {
+					log.Fatal(err)
+				}
+			}
 
 			if json.Dropdown == "golang" {
-				path := "./repo/test.go"
+				path := workDir + "/test.go"
 				err := os.WriteFile(path, []byte(json.Content), 0644)
 				if err != nil {
 					log.Printf("Error writing file: %v", err)
@@ -64,7 +75,7 @@ func SetupRoutes(r *gin.Engine) {
 				}
 				outputStr = string(output) // convert output to string
 			} else if json.Dropdown == "python" {
-				path := "./repo/test.py"
+				path := workDir + "/test.py"
 				err := os.WriteFile(path, []byte(json.Content), 0644)
 				if err != nil {
 					log.Printf("Error writing file: %v", err)
@@ -94,6 +105,7 @@ func SetupRoutes(r *gin.Engine) {
 		}
 		if err := c.ShouldBindJSON(&json); err == nil {
 			//log.Println("New globalVar:", json.GlobalVar)
+			GlobalVar = json.GlobalVar
 		} else {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		}

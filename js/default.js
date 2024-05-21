@@ -64,23 +64,16 @@ function SelectedLanguage(currentValue) {
     document.getElementById('reduction').value = '';
     document.getElementById('percentage').value = '';
 
+
+    var globalVar = document.getElementById("globalVar").textContent;
+    globalVar = globalVar.replace('PersonalGlobalKey: ', '');
+
     var input = document.getElementById('percentage');
     input.style.backgroundColor = 'white';
     input.style.color = 'black';
 
+    console.log('Selected GlobalVar: ' + globalVar);
+
     var output = document.getElementById('output');
     output.style.color = 'black';
-
-    if (currentValue === 'golang') {
-        document.getElementById('myTextarea').value = `package main
-import "fmt"
-
-func main() {
-    hello := "hello world"
-    fmt.Println(hello)
-}`;
-    } else if (currentValue === 'python') {
-        document.getElementById('myTextarea').value = `text = "Hello, world!"
-print(text)`;
-    }
 }
