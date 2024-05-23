@@ -54,5 +54,12 @@ docker run \
 --name SkillsCoder \
 gcclinux/skillscoder:amd64
 ```
-Update 5
-![005](screenshot/skillscoder005.png)
+
+Loading Initial screeen:<br>
+>  Click 'Ok' to generate a new personalised key!<br>
+>  Click 'Cancel' to enter existing saved Key!
+
+If you want to save for a later date the code you just wrote & compile all you have to do is keep the PersonalGlobalKey: xxxx saved and use it next time!
+
+Build 6
+![005](screenshot/latest.png)
