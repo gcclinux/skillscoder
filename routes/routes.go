@@ -45,7 +45,7 @@ func main() {
 
 		c.HTML(200, "index.html", gin.H{
 			"Title":        "SkillsCoder",
-			"SubTitle":     "Welcome to SkillsCoder! (Concept - build 006)",
+			"SubTitle":     "Welcome to SkillsCoder!",
 			"GlobalVar":    globalVar,
 			"RetrieveCode": retrieveCode,
 		}) // render the HTML file with data
