@@ -5,7 +5,7 @@ services:
     restart: always
     container_name: SkillsCoder
     ports:
-      - 8888:8888
+      - 8000:8000
     volumes:
       - ./README.md:/app/README.md
       - ./go.mod:/app/go.mod
