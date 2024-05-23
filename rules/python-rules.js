@@ -5,31 +5,7 @@ function pythonContent(content) {
 // Store the original content length
 var originalLength = content.length;
 
-//Example 1: Replace the print function with the new format - RULE 1
-let lines = content.split('\n');
-let newContent = '';
-let nums = [];
-for (let line of lines) {
-    if (line.includes('=')) {
-        let parts = line.split('=');
-        let varName = parts[0].trim();
-        let value = parts[1].trim();
-        if (varName.startsWith('num')) {
-            nums.push(value);
-            if (nums.length === 4) {
-                newContent += `num1, num2, num3, num4 = ${nums.join(', ')}\n`;
-                nums = [];
-            }
-        } else {
-            newContent += line + '\n';
-        }
-    } else {
-        newContent += line + '\n';
-    }
-}
-content = newContent;
-
-// Example 2: Remove the requirement for variable and print it directly - RULE 0
+// Example 1: Remove the requirement for variable and print it directly - RULE 0
 var linez = content.split('\n');
 for (var i = 0; i < linez.length; i++) {
     var line = linez[i];

@@ -7,67 +7,85 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-        var globalVar = "{{.GlobalVar}}";
-        if (globalVar === "GlobalValueKeyNotSetYet") {
-            var generateRandom = confirm("\nDo you want to generate a new personalised key? \n Click 'Cancel' to enter existing Key.");
-            var userInput;
-            if (generateRandom) {
-                // User wants to generate a random string
+    var globalVar = "{{.GlobalVar}}";
+
+    if (globalVar === "GlobalValueKeyNotSetYet") {
+        var generateRandom = confirm("\nClick 'Ok' to generate a new personalised key? \nClick 'Cancel' to enter existing saved Key.");
+        var userInput;
+        if (generateRandom) {
+            // User wants to generate a random string
+            userInput = generateRandomString(32);
+        } else {
+            // User wants to enter a value manually
+            userInput = prompt("Please enter your existing saved Key.");
+            if (userInput === null) {
+                // User clicked cancel
                 userInput = generateRandomString(32);
-            } else {
-                // User wants to enter a value manually
-                userInput = prompt("Please enter a new value for the global variable.");
             }
-            // Now userInput contains the user's input or a random string
-            globalVar = userInput;
-            console.log("New globalVar:", globalVar);
-            var p = document.createElement("p");
-            p.id = "globalVar";
-            p.textContent = "PersonalGlobalKey: " + globalVar;
-            document.body.appendChild(p);
-            document.getElementById("globalVar").textContent = globalVar;
         }
+        // Now userInput contains the user's input or a random string
+        globalVar = userInput;
+        console.log("New globalVar:", globalVar);
+        var p = document.createElement("p");
+        p.id = "globalVar";
+        p.textContent = "PersonalGlobalKey: " + globalVar;
+        document.body.appendChild(p);
+        document.getElementById("globalVar").textContent = globalVar;
+    }
 
-        // Send the new globalVar to the server
-        fetch('/personalGlobalKey', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ globalVar: globalVar }),
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Server response was not ok.');
-            }
-            console.log('Success:', response.status);
-        })
-        .catch((error) => console.error('Error:', error));
-
-        function generateRandomString(length) {
-            var result = '';
-            var characters = '-ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_';
-            var charactersLength = characters.length;
-            for (var i = 0; i < length; i++) {
-                result += characters.charAt(Math.floor(Math.random() * charactersLength));
-            }
-            return result;
+    // Send the new globalVar to the server
+    fetch('/personalGlobalKey', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ globalVar: globalVar }),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Server response was not ok.');
         }
-        });
+        console.log('Success:', response.status);
+    })
+    .catch((error) => console.error('Error:', error));
+
+    function generateRandomString(length) {
+        var result = '';
+        var characters = '-ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_';
+        var charactersLength = characters.length;
+        for (var i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }
+    });
+    
     </script>
 </head>
+
 <body>
     {{if ne .GlobalVar "GlobalValueKeyNotSetYet"}}
         <p id="globalVar">{{.GlobalVar}}</p>
     {{end}}
+
     <p>{{ template "body.html" . }}</p>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var globalVarElement = document.getElementById("globalVar");
-            if (globalVarElement) {
-                globalVarElement.innerHTML = "<strong>PersonalGlobalKey:</strong> " + globalVarElement.textContent;
-            }
-        });
+    var globalVarElement = document.getElementById("globalVar");
+    var newretrieveCode = "{{.RetrieveCode}}";
+
+    fetch('/getRetrieveCode')
+    .then(response => response.text())
+    .then(data => {
+        var newretrieveCode = data;
+        document.getElementById('myTextarea').value = newretrieveCode;
+        console.log(newretrieveCode);
+    });
+
+    if (globalVarElement) {
+        globalVarElement.innerHTML = "<strong>PersonalGlobalKey:</strong> " + globalVarElement.textContent;
+    }
+});
     </script>
 </body>
 </html>

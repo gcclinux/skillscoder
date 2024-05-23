@@ -58,6 +58,7 @@ window.onload = function() {
 }
 
 function SelectedLanguage(currentValue) {
+    
     document.getElementById('resultTextarea').value = '';
     document.getElementById('output').value = '';
     document.getElementById('original').value = '';
@@ -73,7 +74,15 @@ function SelectedLanguage(currentValue) {
     input.style.color = 'black';
 
     console.log('Selected GlobalVar: ' + globalVar);
+    console.log('Selected Language: ' + currentValue);
 
     var output = document.getElementById('output');
     output.style.color = 'black';
+
+
+    if (currentValue === 'python') {
+        document.getElementById('myTextarea').value = 'message = "Hello, World"\nprint(message)';
+    } else if (currentValue === 'golang') {
+        document.getElementById('myTextarea').value = 'package main\nimport "fmt"\n\nfunc main() {\n\tfmt.Println("Hello, World")\n}';
+    }
 }

@@ -10,25 +10,11 @@ import (
 )
 
 var GlobalVar string
+var RetrieveCode string
 
 // SetupRoutes	sets up the routes for the application
 func SetupRoutes(r *gin.Engine) {
-
-	// Set the global variable
-	r.Use(func(c *gin.Context) {
-		c.Set("globalVar", "GlobalValueKeyNotSetYet")
-		c.Next()
-	})
-
-	r.GET("/", func(c *gin.Context) {
-		// Get the global variable
-		globalVar := c.MustGet("globalVar").(string)
-
-		c.HTML(200, "index.html", gin.H{
-			"Title":     "SkillsCoder",
-			"SubTitle":  "Welcome to SkillsCoder! (Concept - build 006)",
-			"GlobalVar": globalVar,
-			"RetrieveCode": `package main
+	presetCode := `package main
 import "fmt"
 
 func main() {
@@ -38,7 +24,30 @@ func main() {
 	var total int = (num1 + num2 - num3)
 
 	fmt.Println("Total: ",total)
-}`,
+}`
+
+	// Set the global variable
+	r.Use(func(c *gin.Context) {
+		c.Set("globalVar", "GlobalValueKeyNotSetYet")
+		c.Set("retrieveCode", "RetrieveCodeNotSetYet")
+		c.Next()
+	})
+
+	r.GET("/", func(c *gin.Context) {
+		// Get the global variable
+		globalVar := c.MustGet("globalVar").(string)
+		retrieveCode := c.MustGet("retrieveCode").(string)
+
+		if retrieveCode == "RetrieveCodeNotSetYet" {
+			retrieveCode = presetCode
+			RetrieveCode = retrieveCode
+		}
+
+		c.HTML(200, "index.html", gin.H{
+			"Title":        "SkillsCoder",
+			"SubTitle":     "Welcome to SkillsCoder! (Concept - build 006)",
+			"GlobalVar":    globalVar,
+			"RetrieveCode": retrieveCode,
 		}) // render the HTML file with data
 	})
 
@@ -69,7 +78,7 @@ func main() {
 			}
 
 			if json.Dropdown == "golang" {
-				path := workDir + "/test.go"
+				path := workDir + "/main.go"
 				err := os.WriteFile(path, []byte(json.Content), 0644)
 				if err != nil {
 					log.Printf("Error writing file: %v", err)
@@ -115,10 +124,26 @@ func main() {
 			GlobalVar string `json:"globalVar"`
 		}
 		if err := c.ShouldBindJSON(&json); err == nil {
-			//log.Println("New globalVar:", json.GlobalVar)
 			GlobalVar = json.GlobalVar
+			workDir := "./repo/" + GlobalVar
+			file := workDir + "/main.go"
+			if _, err := os.Stat(file); err == nil {
+				content, err := os.ReadFile(file)
+				if err != nil {
+					c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+					return
+				}
+				RetrieveCode = string(content)
+			} else {
+				RetrieveCode = presetCode
+			}
+
 		} else {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		}
+	})
+
+	r.GET("/getRetrieveCode", func(c *gin.Context) {
+		c.String(http.StatusOK, RetrieveCode)
 	})
 }
