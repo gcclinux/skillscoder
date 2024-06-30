@@ -3,9 +3,9 @@ html, body {
     justify-content: center;
     align-items: center;
     height: 100%;
-    width: 1920px;
-    max-width: 1920px;
-    min-width: 1920px;
+    width: 1800px;
+    max-width: 1800px;
+    min-width: 1800px;
 }
 
 body {
